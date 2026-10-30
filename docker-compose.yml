@@ -1,0 +1,11 @@
+services:
+  mcp-server:
+    build: .
+    environment:
+      # listen on all interfaces inside the container; the port is only published on the host's localhost
+      SERVER_ADDRESS: 0.0.0.0
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      # same notes file as running locally; the app resolves data/db relative to /app
+      - ./data:/app/data
