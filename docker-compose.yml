@@ -9,3 +9,26 @@ services:
     volumes:
       # same notes file as running locally; the app resolves data/db relative to /app
       - ./data:/app/data
+
+  postgres:
+    image: pgvector/pgvector:pg19
+    environment:
+      POSTGRES_DB: mcp
+      POSTGRES_USER: mcp
+      # local development default; override with POSTGRES_PASSWORD in your shell or a .env file
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mcp}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      # postgres 18+ keeps its data in a versioned directory under /var/lib/postgresql
+      - pgdata:/var/lib/postgresql
+      # schema and seed scripts run in file-name order, only when the volume is empty
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mcp -d mcp"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:

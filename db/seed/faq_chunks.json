@@ -1,0 +1,122 @@
+[
+  {
+    "category": "Accounts",
+    "title": "How do I reset my password?",
+    "content": "Go to id.acme.example and click \"Forgot password\". A reset link is sent to your work email and expires after 30 minutes. If you no longer have access to your email, ask the IT Service Desk to verify your identity over a video call and issue a temporary password."
+  },
+  {
+    "category": "Accounts",
+    "title": "Setting up multi-factor authentication",
+    "content": "MFA is mandatory for every Acme account. Install an authenticator app such as 1Password or Google Authenticator, then open Security Settings on id.acme.example and scan the QR code. Hardware security keys (YubiKey) are available from IT on request and are required for production access."
+  },
+  {
+    "category": "Accounts",
+    "title": "My account is locked",
+    "content": "Accounts lock for 15 minutes after five failed sign-in attempts. Wait for the lock to expire, or contact the IT Service Desk to unlock it immediately. Repeated lockouts are reported to the Security team, so mention it if you recently changed your password on another device."
+  },
+  {
+    "category": "IT",
+    "title": "Connecting to the VPN",
+    "content": "Install the Acme VPN client from the Self Service app, sign in with your Acme credentials and approve the MFA prompt. The VPN is only needed for internal tools such as the admin console and the staging cluster; email, chat and the wiki work without it."
+  },
+  {
+    "category": "IT",
+    "title": "VPN keeps disconnecting",
+    "content": "Frequent VPN drops are usually caused by Wi-Fi power saving or a second VPN client. Quit other VPN software, switch the client protocol from UDP to TCP under Preferences, and update to the latest client version. If it still drops, send the client log file to the IT Service Desk."
+  },
+  {
+    "category": "IT",
+    "title": "Requesting a new laptop or hardware",
+    "content": "Laptops are refreshed every three years. To request new or replacement hardware, file a ticket in the IT portal under Hardware Request with your manager's approval. Standard accessories like monitors, keyboards and headsets ship within five business days."
+  },
+  {
+    "category": "IT",
+    "title": "Installing software",
+    "content": "Approved software can be installed directly from the Self Service app without admin rights. For anything not listed, submit a Software Request in the IT portal; Security reviews new tools within three business days. Do not install browser extensions that need access to all websites without approval."
+  },
+  {
+    "category": "Security",
+    "title": "Reporting a phishing email",
+    "content": "Use the \"Report phish\" button in your mail client, or forward the message as an attachment to security@acme.example. Do not click links or open attachments. If you already entered your password on a suspicious page, reset it right away and tell the Security team in the #security-help channel."
+  },
+  {
+    "category": "Security",
+    "title": "Lost or stolen device",
+    "content": "Report a lost or stolen laptop or phone to the IT Service Desk within one hour so it can be remotely locked and wiped. All Acme laptops are encrypted, but your active sessions will be revoked as a precaution and you will need to sign in again on other devices."
+  },
+  {
+    "category": "Security",
+    "title": "Sharing files with external partners",
+    "content": "Share documents with people outside Acme only through the company drive using named-person links, never public links. Customer data, credentials and source code must not be shared externally without a signed NDA and approval from the data owner."
+  },
+  {
+    "category": "HR",
+    "title": "How much paid time off do I get?",
+    "content": "Full-time employees receive 20 days of paid time off per year, accrued monthly, plus 10 public holidays. Up to 5 unused days carry over into the next year. Part-time employees accrue PTO in proportion to their scheduled hours."
+  },
+  {
+    "category": "HR",
+    "title": "Requesting time off",
+    "content": "Submit time off requests in the HR portal at least two weeks in advance for absences longer than three days. Your manager approves the request, and it is added to the team calendar automatically. For sick days, notify your manager on the day and log it in the HR portal when you return."
+  },
+  {
+    "category": "HR",
+    "title": "Parental leave policy",
+    "content": "Acme offers 16 weeks of fully paid parental leave to all parents, including adoptive and foster parents, usable within the first year. Notify HR at least 30 days before your planned start date so benefits and payroll can be updated."
+  },
+  {
+    "category": "HR",
+    "title": "Updating my personal details",
+    "content": "Change your address, emergency contacts or legal name in the Profile section of the HR portal. Bank account changes take effect on the next payroll run if submitted before the 20th of the month."
+  },
+  {
+    "category": "Finance",
+    "title": "Submitting an expense claim",
+    "content": "Submit expenses in the Expenses app within 30 days of purchase, with a photo of the itemised receipt. Claims under 500 dollars are approved by your manager; larger claims also need Finance approval. Approved expenses are reimbursed in the next payroll."
+  },
+  {
+    "category": "Finance",
+    "title": "Travel booking and per diem",
+    "content": "Book flights and hotels through the company travel portal so they are billed centrally. Economy class is standard for flights under six hours. The per diem for meals is 75 dollars per day domestically and varies by country for international trips."
+  },
+  {
+    "category": "Finance",
+    "title": "Using the corporate card",
+    "content": "Corporate cards are issued to employees who travel or buy software regularly. Use the card for business expenses only and attach receipts in the Expenses app within seven days. Personal charges must be repaid immediately and may lead to the card being withdrawn."
+  },
+  {
+    "category": "Onboarding",
+    "title": "What happens in my first week?",
+    "content": "Your first day starts with an IT setup session and a welcome call with HR. During the first week you will meet your onboarding buddy, complete security training, and get access to your team's tools. Your manager will share a 30-60-90 day plan by the end of the week."
+  },
+  {
+    "category": "Onboarding",
+    "title": "Required trainings for new hires",
+    "content": "All new hires must complete Security Awareness, Data Privacy and Code of Conduct training in the Learning portal within their first 14 days. Engineers also complete Secure Coding and Incident Response basics within 30 days."
+  },
+  {
+    "category": "Engineering",
+    "title": "Getting access to production",
+    "content": "Production access is granted per service through an access request in the IT portal, approved by the service owner. You must have a hardware security key registered and have completed Incident Response training. Access is reviewed every 90 days and removed if unused."
+  },
+  {
+    "category": "Engineering",
+    "title": "Who is on call and how do I page them?",
+    "content": "Each team publishes its on-call rotation in PagerDuty. To page the on-call engineer for a service, use the /page command in chat with the service name, or open an incident from the PagerDuty app. For company-wide outages, page the Incident Commander rotation."
+  },
+  {
+    "category": "Engineering",
+    "title": "Code review guidelines",
+    "content": "Every change to a shared repository needs at least one approving review from a code owner. Keep pull requests small, under about 400 lines where possible, and include tests and a description of how the change was verified. Reviewers aim to respond within one business day."
+  },
+  {
+    "category": "Workplace",
+    "title": "Booking a meeting room or desk",
+    "content": "Book desks and meeting rooms in the Workplace app up to four weeks ahead. Bookings that are not checked in within 15 minutes are released automatically. Large rooms for more than 12 people need approval from the office manager."
+  },
+  {
+    "category": "Workplace",
+    "title": "Remote work policy",
+    "content": "Acme is remote-friendly: employees may work from home up to three days a week, or fully remote if agreed in their contract. Working from another country for more than 30 days in a year requires HR approval because of tax and legal implications."
+  }
+]
