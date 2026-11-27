@@ -45,15 +45,14 @@ public class Registry {
     }
 
     private void registerTools() {
-        toolSchemas.add(
+        var schemas = List.of(
                 new ToolSchema(
                         "read",
                         "Read all file contents",
                         null,
                         args -> toolBox.readTool()
-                )
-        );
-        toolSchemas.add(
+                ),
+
                 new ToolSchema(
                         "write",
                         "Write all contents to file",
@@ -64,9 +63,8 @@ public class Registry {
                                 true
                         )),
                         args -> ToolOutput.of(toolBox.write(args.get("content").asString()))
-                )
-        );
-        toolSchemas.add(
+                ),
+
                 new ToolSchema(
                         "append",
                         "Append content to the end of the file",
@@ -77,9 +75,8 @@ public class Registry {
                                 true
                         )),
                         args -> ToolOutput.of(toolBox.append(args.get("content").asString()))
-                )
-        );
-        toolSchemas.add(
+                ),
+
                 new ToolSchema(
                         "update",
                         "Replace every occurrence of a piece of text in the file",
@@ -98,16 +95,26 @@ public class Registry {
                                 )
                         ),
                         args -> ToolOutput.of(toolBox.update(args.get("search").asString(), args.get("replace").asString()))
-                )
-        );
-        toolSchemas.add(
+                ),
                 new ToolSchema(
                         "clear",
                         "Delete all contents of the file",
                         null,
                         args -> ToolOutput.of(toolBox.clear())
+                ),
+                new ToolSchema(
+                        "searchDatabase",
+                        "search vector database specifically for support wiki",
+                        List.of(new ParamSpec(
+                                "search",
+                                ParamType.STRING,
+                                "Search query to execute vector search in postgres",
+                                true
+                        )),
+                        args -> ToolOutput.of(toolBox.search(args.get("search").asString()))
                 )
         );
+        toolSchemas.addAll(schemas);
     }
 
     public List<ToolDto> toolsList() {

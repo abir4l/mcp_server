@@ -138,6 +138,16 @@ class McpConnectionIntegrationTest {
                         "name": "clear",
                         "description": "Delete all contents of the file",
                         "inputSchema": {"type": "object", "properties": {}, "required": [], "additionalProperties": false}
+                      },
+                      {
+                        "name": "searchDatabase",
+                        "description": "search vector database specifically for support wiki",
+                        "inputSchema": {
+                          "type": "object",
+                          "properties": {"search": {"type": "string", "description": "Search query to execute vector search in postgres"}},
+                          "required": ["search"],
+                          "additionalProperties": false
+                        }
                       }
                     ]"""), result.get("tools"));
         }

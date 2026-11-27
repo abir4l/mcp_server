@@ -1,6 +1,8 @@
 package dev.abiral.mcp.mcp_server.tool;
 
+import dev.abiral.mcp.mcp_server.FaqJpaRepository;
 import dev.abiral.mcp.mcp_server.config.McpProperties;
+import dev.abiral.mcp.mcp_server.entity.Faq;
 import dev.abiral.mcp.mcp_server.exception.DatabaseNotFoundException;
 import dev.abiral.mcp.mcp_server.tool.schema.ToolOutput;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.regex.Pattern;
 @Service
 public class ToolBox {
 
+    private final FaqJpaRepository faqJpaRepository;
+
     // _meta key telling the client whether the file had any data
     public static final String META_EMPTY = "dev.abiral/empty";
 
@@ -24,7 +28,8 @@ public class ToolBox {
 
     private final Path database;
 
-    public ToolBox(McpProperties properties) {
+    public ToolBox(McpProperties properties, FaqJpaRepository faqJpaRepository) {
+        this.faqJpaRepository = faqJpaRepository;
         this.database = Path.of(properties.databasePath());
     }
 
@@ -100,5 +105,19 @@ public class ToolBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public synchronized String search(String query) {
+        // use jpaRepository to call the postgres db
+        int[] vector = getVectorForQuery(query);
+        // cosine method to extract chunks
+        Faq faq = faqJpaRepository.searchFaqVector(vector);
+        // return the top chunk
+        return faq.getContent();
+    }
+
+    private int[] getVectorForQuery(String query) {
+        // call ollama get vector and return value
+        return null;
     }
 }
