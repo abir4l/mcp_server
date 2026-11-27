@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import tools.jackson.databind.JsonNode;
@@ -38,6 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * The tools work on a temporary database file, emptied before each test.
  */
+@Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class McpConnectionIntegrationTest {
 
