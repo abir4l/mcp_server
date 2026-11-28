@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Starts the whole server on a random port and talks to /mcp over real HTTP,
  * the way an MCP client (protocol 2026-07-28, Streamable HTTP) would.
- *
+ * <p>
  * The tools work on a temporary database file, emptied before each test.
  */
 @Import(TestcontainersConfiguration.class)
@@ -300,6 +300,12 @@ class McpConnectionIntegrationTest {
             var json = error(send(callTool("write", arguments)), 200);
 
             assertErrorCode(json, -32602, "params.arguments must be an object");
+        }
+
+        @Test
+        void searchPgVectorDatabase() throws Exception {
+            var result = success(send(callTool("searchDatabase", "{\"search\":\"My account is locked\"}"))).get("result");
+            assertToolResult(result, false, "Accounts lock for 15 minutes after five failed sign-in attempts. Wait for the lock to expire, or contact the IT Service Desk to unlock it immediately. Repeated lockouts are reported to the Security team, so mention it if you recently changed your password on another device.");
         }
     }
 

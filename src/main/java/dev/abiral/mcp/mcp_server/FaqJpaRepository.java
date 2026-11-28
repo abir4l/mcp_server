@@ -9,5 +9,5 @@ public interface FaqJpaRepository extends JpaRepository<Faq, Long> {
 
     // closest chunk by cosine distance (pgvector's <=> operator)
     @Query(value = "SELECT * FROM faq_chunks ORDER BY embedding <=> CAST(:vector AS vector) LIMIT 1", nativeQuery = true)
-    Faq searchFaqVector(@Param("vector") int[] vector);
+    Faq searchFaqVector(@Param("vector") float[] vector);
 }

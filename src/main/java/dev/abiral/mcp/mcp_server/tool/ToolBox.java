@@ -1,6 +1,7 @@
 package dev.abiral.mcp.mcp_server.tool;
 
 import dev.abiral.mcp.mcp_server.FaqJpaRepository;
+import dev.abiral.mcp.mcp_server.client.OllamaClient;
 import dev.abiral.mcp.mcp_server.config.McpProperties;
 import dev.abiral.mcp.mcp_server.entity.Faq;
 import dev.abiral.mcp.mcp_server.exception.DatabaseNotFoundException;
@@ -28,9 +29,12 @@ public class ToolBox {
 
     private final Path database;
 
-    public ToolBox(McpProperties properties, FaqJpaRepository faqJpaRepository) {
+    private final OllamaClient ollamaClient;
+
+    public ToolBox(McpProperties properties, FaqJpaRepository faqJpaRepository, OllamaClient ollamaClient) {
         this.faqJpaRepository = faqJpaRepository;
         this.database = Path.of(properties.databasePath());
+        this.ollamaClient = ollamaClient;
     }
 
     public String read(){
@@ -109,15 +113,15 @@ public class ToolBox {
 
     public synchronized String search(String query) {
         // use jpaRepository to call the postgres db
-        int[] vector = getVectorForQuery(query);
+        float[] vector = getVectorForQuery(query);
         // cosine method to extract chunks
         Faq faq = faqJpaRepository.searchFaqVector(vector);
         // return the top chunk
         return faq.getContent();
     }
 
-    private int[] getVectorForQuery(String query) {
+    private float[] getVectorForQuery(String query) {
         // call ollama get vector and return value
-        return null;
+        return ollamaClient.embed(query);
     }
 }
